@@ -1,6 +1,8 @@
 # SQL and Scripting Challenges
 
-This repo has the answers for 3 sql Challenges 
+This repo has the answers for 3 sql Challenges and 3 python challenges.
+
+All the scripts expect required data files in `DataFiles` folder.
 
 
 ### Q1
@@ -9,7 +11,7 @@ This repo has the answers for 3 sql Challenges
 
 Run it from Caller.sql by running only the line: call show_percentageGain();
 
-## Q2
+### Q2
 
 `Q2_volWeightedAverage.sql` shows the Volume Weighted Average Price of Apple Stock Prices over a 5-hour time interval.
 
@@ -19,9 +21,14 @@ Input Format: startDateTime has to be a string with the format `yyyy-mm-dd hh:mm
 
 Example: `2010-10-11 09:00:00`
 
-## Q3
+### Q3
 
 `Q3_largestPriceRange.sql` shows the largest price ranges and the data and time at which the maximum value occured.
 
 Run it from Caller.sql by running only the line: call Q3_largestPriceRange();
+
+# Python Scripts
+
+The python Scripts are in Python_Challenges folder
+
 
