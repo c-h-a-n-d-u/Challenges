@@ -1,7 +1,7 @@
 DELIMITER $$
 create procedure Q3_largestPriceRange()
 begin
-	create temporary table s1 as
+	create temporary table t1 as
 		select 
 		STR_TO_DATE(`Date`,'%m/%d/%Y') as 'Date_', 
 		max(abs(`open`-`close`)) as 'R_range'
@@ -9,30 +9,30 @@ begin
 		group by Date
 		order by R_range desc;
 
-	create temporary table s2 as
+	create temporary table t2 as
 		select 
 		STR_TO_DATE(`Date`,'%m/%d/%Y') as 'Date_2', 
 		max(high) as MaxHigh from sample_dataset3
-		where Date in (select Date from s1)
+		where Date in (select Date from t1)
 		group by Date;
 
-	create temporary table s3 as
+	create temporary table t3 as
 		select STR_TO_DATE(`Date`,'%m/%d/%Y') as Date_,
 		STR_TO_DATE(`Time`,'%H%i') as Time_max, max(high) as m from sample_dataset3
-		where high in (select MaxHigh from s2)
+		where high in (select MaxHigh from t2)
 		group by Date_;
 
-	select * from s1;
-	select * from s2;
-	select * from s3;
+	select * from t1;
+	select * from t2;
+	select * from t3;
 
-	select s3.Date_,s3.Time_max, s1.R_range
-	from s3
-	inner join s1
-	on s3.Date_= s1.Date_;
+	select t3.Date_,t3.Time_max, t1.R_range
+	from t3
+	inner join t1
+	on t3.Date_= t1.Date_;
 end $$ 
 DELIMITER ;
--- drop procedure Q3_largestPriceRange;
--- drop temporary table s1;
--- drop temporary table s2;
--- drop temporary table s3;
+drop procedure Q3_largestPriceRange;
+drop temporary table t1;
+drop temporary table t2;
+drop temporary table t3;
