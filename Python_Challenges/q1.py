@@ -1,24 +1,26 @@
-#!/bin/usr/env python3
+#!/usr/bin/env python3
+import re
 
-
-# Open a file
-datafile=open("../DataFiles/hosts.real")
-
-# Read the file line by line
-counter=1
+datafile = open('../DataFiles/hosts.real')
+outputfile = open("../DataFiles/outputhosts.real",'w')
+count = 1
+lines = []
+ips = []
+hostnames = []
 for line in datafile:
-    if(line=='\n'):
-        continue
-    # if(line[-1]=='EOF'):
-    #     print(str(counter)+": "+line.rstrip(),end='')
-    
-    print(str(counter)+": "+line.rstrip())
-    wordlist=line.split()
-    print(wordlist)
-    new_line = '\t'.join(wordlist)
-    print(new_line)
-    # print(str(counter)+": "+line,end='')
-    counter+=1
-    break 
+    line = re.sub('([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})','',line)
+    line = re.sub('#.*','',line)
+    line = line.rstrip()
 
+    if count != 1 and len(line)>0:
+        # print(count, line)
+        line = line.split()
+        line = ', '.join(line[1:]) + ' -> ' +line[0]
+    else:
+        line = "HostNames -> IP"
+    count += 1
+    lines.append(line)
+
+outputfile.write('\n'.join(lines))
 datafile.close()
+outputfile.close()
