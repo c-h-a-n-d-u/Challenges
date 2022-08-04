@@ -1,11 +1,11 @@
 # SQL and Scripting Challenges
 
-This repo has the answers for 3 Challenges
+This repo has the answers for 3 sql Challenges 
 
 
 ## Q1
 
-Q1_percentageGain.sql shows the top 5 NASDAQ stocks sorted by Percentage Gain. 
+`Q1_percentageGain.sql` shows the top 5 NASDAQ stocks sorted by Percentage Gain. 
 
 Run it from Caller.sql by running only the line: call show_percentageGain();
 
